@@ -1,10 +1,15 @@
 <div class="login-page">
+  <div class="personnalised-container">
+    <div class="logo center-align  pt-32">
+      <%= image_tag "cc-logo.png", alt: "cinecercle logo" %>
+    </div>
+    <p id="baseline" class="mt-24" >
+      Partagez vos coups de coeur à vos proches et, pour votre prochaine soirée film, écoutez l'avis de ceux qui comptent
+    </p>
+  </div>
 
-  <div id="login-form" class="b-shadow personnalised-container">
+  <div id="login-form" class="b-shadow personnalised-container pb-2">
     <div class="personnalised-container mt-6">
-
-
-
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs mt-8">
             <%= f.input :email,
