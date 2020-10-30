@@ -9,16 +9,32 @@
 
 .form-field {
   background-color: $cream;
-  color: $dark-gray;
-  font-weight: bold;
+  color: rgb(161,175,191);
+  font-weight: 600;
   font-size: 16px;
   border-radius: 20px;
   width: 100%;
-  height: 40px;
-  padding-left: 30px;
-  margin: 10px 0px;
+  height: 43px;
+  padding: 8px 30px;
+  margin: 12px 0px;
 }
 
+.file {
+
+  input {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+  }
+
+
+}
 
 
 .switch {

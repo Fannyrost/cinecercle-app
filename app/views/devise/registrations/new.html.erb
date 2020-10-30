@@ -1,26 +1,62 @@
- <h2>Sign up</h2>
+<div class="personnalised-container mt-12">
+   <h1 class="mb-12">Bienvenue !</h1>
+   <div class="text-center">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :pseudo,
+                      required: true,
+                      autofocus: true,
+                      placeholder: "Pseudo",
+                      input_html: { class: 'form-field b-shadow' },
+                      label:false %>
+          <div class="file">
+            <%= f.input :photo,
+                        as: :file,
+                        input_html: { class: 'form-field b-shadow' },
+                        label: false,
+                        label_html: { class: 'cream-font' } %>
+            <h3 class="form-field b-shadow text-left">
+              Choisissez une photo de profil
+            </h3>
+          </div>
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email", class: 'form-field b-shadow' },
+                      placeholder: "Email",
+                      label:false %>
+          <%= f.input :password,
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: 'form-field b-shadow'},
+                      placeholder: "Mot de passe",
+                      label:false %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: 'form-field b-shadow'},
+                      placeholder: "Confirmez votre mot de passe",
+                      label:false %>
+        </div>
 
-    <div class="form-inputs">
-      <%= f.input :email,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "email" }%>
-      <%= f.input :password,
-                  required: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
-                  required: true,
-                  input_html: { autocomplete: "new-password" } %>
+        <div class="form-actions">
+          <%= f.button :submit, "Créez mon compte", class: 'btn-pinky mt-12' %>
+        </div>
+
+        <div class="center-align mb-10" id="sign-up-text">
+          <% if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%=  render 'shared/btn-underline', path: omniauth_authorize_path(resource_name, provider), title: "Se connecter avec Facebook", fontawesome: "fab fa-facebook-square"  %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="discrete-link" id="sign-up-btn">
+          <% if controller_name != 'sessions' %>
+              <%= render 'shared/discrete-link', text: 'Déjà utilisateur ?  ', title: "Connectez-vous", path: new_session_path(resource_name) %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+</div>
 

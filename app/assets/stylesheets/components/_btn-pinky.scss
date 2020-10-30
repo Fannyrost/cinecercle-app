@@ -1,8 +1,9 @@
 .btn-pinky {
   background-color: $pinky;
   color: $cream;
-  padding: 5px 15px;
+  padding: 7px 20px;
   border-radius: 20px;
+  font-weight: 600px;
 
   &:hover{
     background-color: rgba(227, 59, 87, 0.85);
