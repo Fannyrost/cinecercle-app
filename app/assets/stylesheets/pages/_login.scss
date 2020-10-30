@@ -1,0 +1,23 @@
+.login-page {
+    background-color: $pinky;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+
+
+  #login-form {
+    background-color: $light-blue;
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    height: 45vh;
+
+  }
+}
+
+.rememberme {
+  p {
+    font-weight: 400;
+  }
+}

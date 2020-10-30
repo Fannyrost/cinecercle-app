@@ -1,20 +1,55 @@
-<h2>Log in</h2>
+<div class="login-page">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div id="login-form" class="b-shadow personnalised-container">
+    <div class="personnalised-container mt-6">
+
+
+
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs mt-8">
+            <%= f.input :email,
+                        required: true,
+                        # autofocus: true,
+                        placeholder: "Email",
+                        label:false,
+                        input_html: { autocomplete: "email", class: 'form-field b-shadow' } %>
+            <%= f.input :password,
+                        required: true,
+                        placeholder: "Password",
+                        label:false,
+                        input_html: { autocomplete: "current-password", class: 'form-field b-shadow' } %>
+          <div class="right-align">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%=  render 'shared/btn-underline', path: new_password_path(resource_name), title: "Mot de passe oublié ?", fontawesome: "fas fa-unlock-alt"  %>
+            <% end %>
+          </div>
+          <div class="flex justify-start items-center mt-3 rememberme">
+            <div class="switch">
+              <%= f.input :remember_me,
+                          as: :boolean if devise_mapping.rememberable?
+                          %>
+            </div>
+            <div class="ml-2"><p>Se souvenir de moi</p></div>
+          </div>
+
+  <!--         <div class="form-actions"> -->
+              <%= f.button :submit, "Se connecter", class: 'btn-pinky b-shadow mt-4' %>
+            <% end %>
+
+          <div class="center-align mb-10">
+            <% if devise_mapping.omniauthable? %>
+              <%- resource_class.omniauth_providers.each do |provider| %>
+                <%=  render 'shared/btn-underline', path: omniauth_authorize_path(resource_name, provider), title: "Se connecter avec Facebook", fontawesome: "fab fa-facebook-square"  %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="discrete-link">
+            <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+                <%= render 'shared/discrete-link', text: 'Nouvel utilisateur ? ', title: "Créez votre compte", path: new_registration_path(resource_name) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
