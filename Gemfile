@@ -32,6 +32,8 @@ gem 'devise'
 gem 'pundit'
 gem 'omniauth-facebook'
 
+gem 'cloudinary', '~> 1.16.0'
+
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
