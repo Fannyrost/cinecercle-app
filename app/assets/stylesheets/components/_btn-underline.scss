@@ -1,0 +1,65 @@
+.btn-underline {
+  // border-bottom: 1px solid $pinky;
+  position: relative;
+
+  &:after {
+  content: "";
+  background: $pinky;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  width: 100%;
+  margin-bottom: -3px;
+  }
+}
+
+.btn-underline-white {
+  // border-bottom: 1px solid $pinky;
+  position: relative;
+  color: $cream;
+
+  &:after {
+  content: "";
+  background: $pinky;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  width: 100%;
+  margin-bottom: -3px;
+  }
+}
+
+
+.btn-underline-hover {
+  transition: transform 0.3s;
+  height: 22px;
+  width: 210px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .fas {
+    color: $pinky;
+    width: 10px;
+  }
+}
+
+.btn-underline-hover {
+  transition: transform 0.3s;
+  height: 22px;
+  width: auto;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .fas, .fab {
+    color: $pinky;
+    width: 20px;
+  }
+}
