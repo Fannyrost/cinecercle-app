@@ -14,8 +14,12 @@ class MoviesController < ApplicationController
   def movie
     @imdbid = params[:imdbid]
     @movie = Movie.from_imdbid(@imdbid)
+    redirect_to movie_path(@movie)
   end
 
+  def show
+    @movie = Movie.find(params[:id])
+  end
 
   private
 
