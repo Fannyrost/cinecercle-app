@@ -1,2 +1,29 @@
-<h1>Movies#search</h1>
-<p>Find me in app/views/movies/search.html.erb</p>
+<%= render 'shared/navbar' %>
+<div class="personnalised-container">
+  <form action="/movies" method='post' class="flex items-center search mb-10" >
+    <input type="text" name="query" placeholder="Rechercher un film" class="form-field b-shadow">
+    <button type= "submit" class="b-shadow"><i class="fas fa-search"></i></button>
+  </form>
+
+
+  <div class="flex justify-between items-start flex-wrap">
+    <% @movies.each do |movie| %>
+      <% poster = movie["Poster"] %>
+        <a href="#">
+          <div class="mb-4 text-center movie-card" data-imdb="<%= movie["imdbID"] %>">
+            <% unless poster =="N/A" %>
+              <img src="<%= poster %> " class="movie-poster b-shadow">
+            <% else %>
+              <img src="<%= image_path("poster.png") %> " class="movie-poster b-shadow">
+            <% end %>
+            <p><%= movie['Title'] %></p>
+          </div>
+        </a>
+    <% end %>
+
+  </div>
+
+
+
+</div>
+

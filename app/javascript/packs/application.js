@@ -29,8 +29,8 @@ import 'stylesheets/application'
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { movieShow } from '../components/movie_show';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  movieShow();
 });

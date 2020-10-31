@@ -29,10 +29,13 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
-gem 'pundit'
 gem 'omniauth-facebook'
 
 gem 'cloudinary', '~> 1.16.0'
+
+gem 'json'
+gem 'open-uri'
+gem 'rest-client'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

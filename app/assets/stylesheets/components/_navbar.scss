@@ -1,9 +1,23 @@
+.navbar-transparent {
+  background-color: transparent !important;
+  position: fixed !important;
+  .menu-btn:checked ~ {
+
+    .menu {
+      max-height: 100vh;
+      overflow: auto;
+      background: $light-blue;
+    }
+  }
+}
+
 .navbar {
   background-color: $light-blue;
   position: sticky;
   width: 100%;
   z-index: 3;
   color: $dark-gray;
+  padding: 20px;
 
   ul {
     margin: 0;
@@ -18,7 +32,6 @@
     text-decoration: none;
     transition: all 0.5 ease;
     letter-spacing: 1px;
-
   }
 
 
@@ -28,33 +41,23 @@
   }
 
   .logo {
-    display: block;
-    float: right;
     font-size: 2em;
     text-decoration: none;
-    position: relative;
-    top: 0.7rem;
-    right: -12.7rem;
   }
 
   .menu {
     clear: both;
     max-height: 0;
     transition: max-height .2s ease-out;
-
   }
 
   .menu-icon {
     cursor: pointer;
     display: inline-block;
-    float: left;
-    padding: 28px 20px;
-    position: relative;
-    left: -1rem;
     user-select: none;
 
     .navicon {
-      background: $light-blue;
+      background: transparent;
       display: block;
       height: 5px;
       position: relative;
