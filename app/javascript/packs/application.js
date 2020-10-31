@@ -30,7 +30,9 @@ import 'stylesheets/application'
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { movieShow } from '../components/movie_show';
+import { openModal } from '../components/open_modal';
 
 document.addEventListener('turbolinks:load', () => {
   movieShow();
+  openModal();
 });

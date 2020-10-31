@@ -1,0 +1,34 @@
+<%= render 'shared/navbar-transparent' %>
+<div class="movie-show" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%), url(<%= @movie.poster %>);" >
+  <div class="right-align pt-16">
+    <div class="flex flex-col items-end personnalised-container">
+      <%=  render 'shared/btn-underline-cream', path: movie_watchlists_path(@movie), title: "Ajouter à ma watchlist", fontawesome: "fas fa-plus", method: :post  %>
+      <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans un cercle", fontawesome: "fas fa-star"%>
+    </div>
+  </div>
+</div>
+<div class="movie-content">
+  <div class="personnalised-container pt-4 pb-8">
+    <div class="flex justify-between movie-info mb-12">
+      <div class="leading-none flex-shrink"><h1><%= @movie.title %> <span class="movie-year">(<%= @movie.year %>)</span></h1></div>
+      <div class="w-32 flex justify-end flex-wrap">
+        <% @movie.split_genre.each do |genre| %>
+          <p class="genre ml-1"><%= genre %></p>
+        <% end %>
+      </div>
+    </div>
+    <p>Réalisateur : <%= @movie.director %></p>
+    <p  class="my-2" >Acteurs : <%= @movie.actors %></p>
+    <h2 class="mt-6 mb-2">Synopsis</h2>
+    <p><%= @movie.plot %></p>
+  </div>
+</div>
+
+<div class="circle-form hidden overlay" id="modal-form">
+  <div class="modale">
+    <%= render 'shared/closing-modal' %>
+    <p>coucou from modal</p>
+  </div>
+</div>
+
+
