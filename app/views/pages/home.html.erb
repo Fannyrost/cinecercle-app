@@ -1,3 +1,15 @@
-<div class="login-page">
+<div class="personnalised-container">
+  <%= render 'shared/navbar' %>
+
+  <h3 class="form-field b-shadow text-left">
+    Rechercher un film
+  </h3>
+  <form action="/movies/request" method='post' >
+    <input type="text" name="query" placeholder="Rechercher un film" class="searchbar">
+    <button type= "submit"><i class="fas fa-search"></i></button>
+  </form>
+
+
+
 
 </div>
