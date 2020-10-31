@@ -1,12 +1,120 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar {
+  background-color: $light-blue;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  color: $dark-gray;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+
+  li a {
+    display: block;
+    padding: 20px 20px;
+    text-decoration: none;
+    transition: all 0.5 ease;
+    letter-spacing: 1px;
+
+  }
+
+
+  li a:hover,.menu-btn:hover {
+    font-weight: 600;
+    text-shadow:  0 0px 7px rgba(0,0,0,0.15);
+  }
+
+  .logo {
+    display: block;
+    float: right;
+    font-size: 2em;
+    text-decoration: none;
+    position: relative;
+    top: 0.7rem;
+    right: -12.7rem;
+  }
+
+  .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+
+  }
+
+  .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    padding: 28px 20px;
+    position: relative;
+    left: -1rem;
+    user-select: none;
+
+    .navicon {
+      background: $light-blue;
+      display: block;
+      height: 5px;
+      position: relative;
+      transition: background .2s ease-out;
+      width: 40px;
+      border-radius: 5px;
+
+      &:before, &:after {
+        background: $dark-gray;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: width .2s ease-out;
+
+        border-radius: 5px;
+      }
+
+      &:before {
+        top: 5px;
+        width: 80%;
+      }
+
+      &:after {
+        top: -5px;
+        width: 100%;
+      }
+    }
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  .menu-btn:checked ~ {
+
+    .menu {
+      max-height: 100vh;
+      overflow: auto;
+    }
+
+    .menu-icon {
+      .navicon {
+        background: transparent;
+
+        &:before {
+          width : 100%;
+          transform: rotate(-45deg);
+        }
+        &:after {
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    .menu-icon:not(.steps) {
+      .navicon:before, .navicon:after {
+        top: 0;
+      }
+    }
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
