@@ -1,0 +1,27 @@
+.movie-show {
+  height: 92vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  z-index: -1;
+  overflow:hidden;
+}
+
+.movie-content {
+  background-color: $light-blue;
+  border-radius: 20px 20px 0px 0px;
+  position: relative;
+  top: 88vh;
+  z-index: 1;
+
+  .movie-year {
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+}
+
+  .movie-info {
+    height: 3.2rem;
+  }

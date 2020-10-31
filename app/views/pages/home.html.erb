@@ -1,9 +1,9 @@
+<%= render 'shared/navbar' %>
 <div class="personnalised-container">
-  <%= render 'shared/navbar' %>
 
-  <form action="/movies" method='post' class="flex justify-start items-center search" >
+  <form action="/movies" method='post' class="flex items-center search" >
     <input type="text" name="query" placeholder="Rechercher un film" class="form-field b-shadow">
-    <button type= "submit"><i class="fas fa-search"></i></button>
+    <button type= "submit" class="b-shadow"><i class="fas fa-search"></i></button>
   </form>
 
 

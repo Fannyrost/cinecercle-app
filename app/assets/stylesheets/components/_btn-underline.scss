@@ -35,24 +35,13 @@
 .btn-underline-hover {
   transition: transform 0.3s;
   height: 22px;
-  width: 210px;
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  .fas {
-    color: $pinky;
-    width: 10px;
-  }
-}
-
-.btn-underline-hover {
-  transition: transform 0.3s;
-  height: 22px;
   width: auto;
   cursor: pointer;
+  font-size: 10px !important;
+
+  p {
+    font-size: 10px !important;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -60,6 +49,6 @@
 
   .fas, .fab {
     color: $pinky;
-    width: 20px;
+    width: 12px;
   }
 }

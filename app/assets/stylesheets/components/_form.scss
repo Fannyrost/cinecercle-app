@@ -20,9 +20,12 @@
 }
 
 .search {
+
+  width: 109%;
+
   button {
-    color: white;
-    background: pink;
+    color: $cream;
+    background: $pinky;
     height: 39px;
     width: 39px;
     border-radius: 50%;
@@ -30,6 +33,10 @@
     position: relative;
     right: 2rem;
   }
+
+  // input {
+  //   width: 110% !important;
+  // }
 
 }
 
