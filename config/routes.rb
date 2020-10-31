@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+
+  get 'movies/search'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-
+  post'movies/request', to: 'movies#request', as: 'movie_request'
 
 
 
