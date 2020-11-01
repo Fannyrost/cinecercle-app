@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_183453) do
+ActiveRecord::Schema.define(version: 2020_11_01_115524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(version: 2020_10_31_183453) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.boolean "accepted", default: false
+    t.bigint "circle_id", null: false
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.string "token"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["circle_id"], name: "index_invitations_on_circle_id"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -104,6 +116,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_183453) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "invitations", "circles"
   add_foreign_key "memberships", "circles"
   add_foreign_key "memberships", "users"
   add_foreign_key "recommendations", "circles"

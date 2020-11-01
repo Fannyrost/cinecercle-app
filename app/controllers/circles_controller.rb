@@ -9,6 +9,8 @@ class CirclesController < ApplicationController
 
   def show
     @circle = Circle.find(params[:id])
+    @invitation = Invitation.new
+    @users = User.pluck(:pseudo).sort
   end
 
   def create

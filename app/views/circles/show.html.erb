@@ -1,14 +1,21 @@
 <%= render 'shared/navbar' %>
 <div class="personnalised-container">
   <div class="right-align flex flex-col items-end">
-   <%= render 'shared/btn-modal.html.erb',  path: '#', title: "Inviter un ami", fontawesome: "fas fa-user-friends" %>
+   <%= render 'shared/btn-modal.html.erb',  path: '#', title: "Inviter un nouveau membre", fontawesome: "fas fa-user-friends" %>
    <%= render 'shared/btn-underline.html.erb', path: '#', title: "Recommander un film", fontawesome: "fas fa-film" %>
   </div>
 
   <div class="circle-form hidden overlay" id="modal-form">
     <div class="modale">
       <%= render 'shared/closing-modal' %>
-      <p>coucou from modal</p>
+      <div id= "search-data" class="form-search search-data" data-users="<%= @users.to_json %>">
+        <form action=" <%=  circle_invitations_path(@circle) %> " method='post' class="flex items-center">
+          <input type="text" name="query" placeholder="Rechercher un membre" class="form-field b-shadow form-control search-input">
+          <button type= "submit" class="b-shadow"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <%= link_to "Inviter un nouveau membre par mail", new_circle_invitation_path(@circle) %>
     </div>
   </div>
 

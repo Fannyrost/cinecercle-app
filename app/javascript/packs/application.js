@@ -31,8 +31,10 @@ import 'stylesheets/application'
 // import { initSelect2 } from '../components/init_select2';
 import { movieShow } from '../components/movie_show';
 import { openModal } from '../components/open_modal';
+import { autocompleteSearch } from '../components/autocomplete';
 
 document.addEventListener('turbolinks:load', () => {
   movieShow();
   openModal();
+  autocompleteSearch();
 });
