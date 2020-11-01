@@ -1,0 +1,19 @@
+<%= render 'shared/navbar' %>
+<div class="personnalised-container">
+  <h1>Inviter par email</h1>
+
+  <div class="form-inputs">
+    <%= simple_form_for [@circle, @invitation] do |f| %>
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                placeholder: "Email de l'invité",
+                input_html: { class: 'form-field b-shadow' },
+                label:false %>
+    <div class="form-actions">
+      <%= f.button :submit, "Envoyez", class: 'btn-pinky mt-8' %>
+    </div>
+    <% end %>
+  </div>
+
+</div>

@@ -13,10 +13,13 @@ Rails.application.routes.draw do
     resources :watchlists, only: [:create, :destroy]
   end
 
-  resources :circles, only: [:index, :show, :new, :create] do |variable|
+  resources :circles, only: [:index, :show, :new, :create] do
     post'movies', to: 'movies#search', as: 'movie_search'
+    resources :invitations, only: [:new, :create]
+
 
   end
+
 
 
   root to: 'pages#home'
