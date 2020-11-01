@@ -2,10 +2,15 @@ class MoviesController < ApplicationController
    skip_before_action :verify_authenticity_token, only: [:search]
   def search
     query = params[:query]
-    @movie = Movie.find_by(title: query)
-    Movie.find_by(title: query)
+    capitalized_query = query.split.map(&:capitalize).join(' ')
+    @movie = Movie.find_by(title: capitalized_query)
     if @movie.nil?
-      @movies = movies_scrapper(query)
+      results = movies_scrapper(query)
+      if results.nil?
+        redirect_to request.referer, notice: "Aucun résultat 🙄"
+      else
+        @movies = results
+      end
     else
       redirect_to movie_path(@movie)
     end

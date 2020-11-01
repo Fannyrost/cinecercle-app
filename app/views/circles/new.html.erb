@@ -1,0 +1,25 @@
+<%= render 'shared/navbar' %>
+<div class="personnalised-container">
+  <h1 class="mb-8">Créer un cercle</h1>
+
+  <div class="form-inputs">
+    <%= simple_form_for [ @circle] do |f| %>
+      <%= f.input :name,
+                  required: true,
+                  autofocus: true,
+                  placeholder: "Nom du Cercle",
+                  input_html: { class: 'form-field' },
+                  label:false %>
+      <%= f.input :description,
+                  required: true,
+                  autofocus: true,
+                  input_html: { class: 'form-field' },
+                  placeholder: "Description",
+                  label:false %>
+      <div class="form-actions">
+        <%= f.button :submit, "Créer", class: 'btn-pinky mt-8' %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

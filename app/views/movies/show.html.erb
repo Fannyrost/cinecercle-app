@@ -2,16 +2,20 @@
 <div class="movie-show" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%), url(<%= @movie.poster %>);" >
   <div class="right-align pt-16">
     <div class="flex flex-col items-end personnalised-container">
-      <%=  render 'shared/btn-underline-cream', path: movie_watchlists_path(@movie), title: "Ajouter à ma watchlist", fontawesome: "fas fa-plus", method: :post  %>
+      <% if @movie.watchlisted?(current_user) %>
+        <%=  render 'shared/btn-underline-cream', path: movie_watchlists_path(@movie), title: "Ajouter à ma watchlist", fontawesome: "fas fa-plus", method: :post  %>
+      <% else %>
+        <%=  render 'shared/btn-underline-cream', path: movie_watchlist_path(@movie), title: "Supprimer de ma watchlist", fontawesome: "fas fa-minus", method: :delete  %>
+      <% end %>
       <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans un cercle", fontawesome: "fas fa-star"%>
     </div>
   </div>
 </div>
 <div class="movie-content">
   <div class="personnalised-container pt-4 pb-8">
-    <div class="flex justify-between movie-info mb-12">
+    <div class="flex justify-between movie-info mb-6">
       <div class="leading-none flex-shrink"><h1><%= @movie.title %> <span class="movie-year">(<%= @movie.year %>)</span></h1></div>
-      <div class="w-32 flex justify-end flex-wrap">
+      <div class="w-40 flex justify-end flex-wrap">
         <% @movie.split_genre.each do |genre| %>
           <p class="genre ml-1"><%= genre %></p>
         <% end %>

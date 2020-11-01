@@ -1,0 +1,15 @@
+<%= render 'shared/navbar' %>
+<div class="personnalised-container">
+  <div class="right-align flex flex-col items-end">
+   <%= render 'shared/btn-modal.html.erb',  path: '#', title: "Inviter un ami", fontawesome: "fas fa-user-friends" %>
+   <%= render 'shared/btn-underline.html.erb', path: '#', title: "Recommander un film", fontawesome: "fas fa-film" %>
+  </div>
+
+  <div class="circle-form hidden overlay" id="modal-form">
+    <div class="modale">
+      <%= render 'shared/closing-modal' %>
+      <p>coucou from modal</p>
+    </div>
+  </div>
+
+</div>

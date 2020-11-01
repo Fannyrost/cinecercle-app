@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_160934) do
+ActiveRecord::Schema.define(version: 2020_10_31_183453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,23 @@ ActiveRecord::Schema.define(version: 2020_10_31_160934) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "circles", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.boolean "active"
+    t.bigint "user_id", null: false
+    t.bigint "circle_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["circle_id"], name: "index_memberships_on_circle_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.string "director"
@@ -47,6 +64,19 @@ ActiveRecord::Schema.define(version: 2020_10_31_160934) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "imdbid"
     t.string "poster"
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "circle_id", null: false
+    t.bigint "membership_id", null: false
+    t.integer "rating"
+    t.string "review"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["circle_id"], name: "index_recommendations_on_circle_id"
+    t.index ["membership_id"], name: "index_recommendations_on_membership_id"
+    t.index ["movie_id"], name: "index_recommendations_on_movie_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,6 +104,11 @@ ActiveRecord::Schema.define(version: 2020_10_31_160934) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "memberships", "circles"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "recommendations", "circles"
+  add_foreign_key "recommendations", "memberships"
+  add_foreign_key "recommendations", "movies"
   add_foreign_key "watchlists", "movies"
   add_foreign_key "watchlists", "users"
 end
