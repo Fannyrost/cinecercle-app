@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   resources :circles, only: [:index, :show, :new, :create] do
     get 'movies', to: 'movies#search', as: 'movie_search'
     resources :invitations, only: [:new, :create]
-    resources :recommendations, only: [:show]
+    resources :recommendations, only: [:show] do
+      resources :watchlists, only: [:create, :destroy]
+    end
   end
 
 

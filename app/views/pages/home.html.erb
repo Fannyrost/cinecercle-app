@@ -15,7 +15,7 @@
       <%= link_to circle_path(circle) do  %>
         <div class="circle b-shadow mr-3 flex flex-col justify-center items-center">
           <div><h2><%= circle.name %></h2></div>
-          <div class="flex justify-around items-center">
+          <div class="flex justify-center items-center items">
             <div class="mr-2"><p><i class="fas fa-users"></i> <%= circle.memberships.count %></p></div>
             <div class="mr-2"><p><i class="fas fa-film"></i> <%= circle.recommendations.count %></p></div>
             <div class="mr-2"><p><i class="fas fa-star"></i> <%= circle.recommendations.average(:rating) %></p></div>

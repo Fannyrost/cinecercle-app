@@ -3,4 +3,17 @@
   padding: 15px;
   border-radius: 20px;
 
+  h3, .fa-star {
+    font-size: 13px;
+  }
+
+}
+
+.time-ago {
+  p {
+    font-style: italic;
+    font-size: 10px;
+    text-align: right
+
+  }
 }

@@ -6,8 +6,8 @@
   .circle {
     background-color: $cream;
     flex: 0 0 auto;
-    width: 7rem;
-    height: 7rem;
+    width: 8.5rem;
+    height: 8.5rem;
     border-radius: 50%;
     overflow: hidden;
     transition: transform 0.3s;
@@ -18,5 +18,10 @@
       transform: scale(1.05);
 
     }
+
+    .items{
+      width: 7rem;
+    }
   }
 }
+

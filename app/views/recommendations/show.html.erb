@@ -3,9 +3,9 @@
   <div class="right-align pt-16">
     <div class="flex flex-col items-end personnalised-container">
       <% if @movie.watchlisted?(current_user) %>
-        <%=  render 'shared/btn-underline-cream', path: movie_watchlists_path(@movie), title: "Ajouter à ma watchlist", fontawesome: "fas fa-plus", method: :post  %>
+        <%=  render 'shared/btn-underline-cream', path: circle_recommendation_watchlists_path(@circle, @recommendation), title: "Ajouter à ma watchlist", fontawesome: "fas fa-plus", method: :post  %>
       <% else %>
-        <%=  render 'shared/btn-underline-cream', path: movie_watchlist_path(@movie), title: "Supprimer de ma watchlist", fontawesome: "fas fa-minus", method: :delete  %>
+        <%=  render 'shared/btn-underline-cream', path: circle_recommendation_watchlist_path(@circle, @recommendation), title: "Supprimer de ma watchlist", fontawesome: "fas fa-minus", method: :delete  %>
       <% end %>
     </div>
   </div>
@@ -27,11 +27,11 @@
     <div class="reco-card mt-6">
       <div class=" flex justify-between items-start mb-3">
         <div><p>Avatar</p></div>
-        <div class="w-8/12">
-          <h2>Recommandé par <%= @recommendation.membership.user.pseudo.capitalize %></h2>
+        <div class="w-8/12 mx-2">
+          <h3>Recommandé par <%= @recommendation.membership.user.pseudo.capitalize %></h3>
           <%= render 'shared/stars', number: @recommendation.rating %>
         </div>
-        <div><p><%= @recommendation.time_ago %></p></div>
+        <div class="time-ago"><p><%= @recommendation.time_ago %></p></div>
       </div>
       <p>"<%= @recommendation.review %>"</p>
     </div>
