@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   has_one_attached :photo
 
+  has_many :memberships
+  has_many :watchlists
+  has_many :circles, through: :memberships
+
   def self.from_omniauth(auth)
    self.where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
      user.email = auth.info.email

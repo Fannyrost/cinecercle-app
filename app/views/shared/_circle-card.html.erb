@@ -1,0 +1,15 @@
+<%= link_to circle_path(circle) do  %>
+  <div class="circle-card b-shadow flex justify-between items-center mb-5">
+    <div class="mr-5 py-auto"><h2 class="my-auto"><%= circle.name %></h2></div>
+    <div class="flex flex-col justify-between w-9/12">
+      <div class="flex justify-between bold-font">
+        <div class="mr-2"><p><i class="fas fa-users"></i> <%= circle.memberships.count %> membres</p></div>
+        <div class="mr-2"><p><i class="fas fa-film"></i> <%= circle.recommendations.count %> films</p></div>
+        <div class="mr-2"><p><i class="fas fa-star"></i> <%= circle.recommendations.average(:rating) %> de moyenne</p></div>
+      </div>
+      <div class="mt-3">
+        <p>"<%= circle.description %>"</p>
+      </div>
+    </div>
+  </div>
+<% end %>

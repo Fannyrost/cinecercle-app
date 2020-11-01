@@ -1,0 +1,13 @@
+<%= render 'shared/navbar' %>
+<div class="personnalised-container">
+  <div class="flex justify-between items-start mb-8">
+    <div><h1>Mes Cercles</h1></div>
+    <%= render 'shared/btn-underline', path:  new_circle_path, title: "Créer un cercle", fontawesome: "fas fa-plus" %>
+  </div>
+  <div>
+    <% @circles.each do |circle| %>
+      <%= render 'shared/circle-card', circle: circle %>
+    <% end %>
+  </div>
+
+</div>

@@ -1,4 +1,7 @@
 class Movie < ApplicationRecord
+  has_many :watchlists
+  has_many :recommendations
+
 
   def self.from_imdbid(imdbid)
     Movie.find_by(imdbid: imdbid) || create_movie_from(imdbid)
@@ -24,7 +27,11 @@ class Movie < ApplicationRecord
   end
 
   def split_genre
-    x = genre.split(",")
-    x
+    genre.split(",")
   end
+
+  def watchlisted?(user)
+    Watchlist.find_by(movie_id: id, user_id: user.id ).nil?
+  end
+
 end

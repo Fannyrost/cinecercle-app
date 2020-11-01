@@ -1,0 +1,28 @@
+.circle-card {
+  width: 100%;
+  height: 6rem;
+  background: $cream;
+  padding: 10px;
+  border-radius: 20px;
+
+  h2 {
+    border: 3px solid $pinky;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .bold-font {
+    text-align:center;
+    p {
+      font-weight: 400;
+    }
+  }
+}
