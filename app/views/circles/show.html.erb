@@ -1,8 +1,8 @@
 <%= render 'shared/navbar' %>
 <div class="personnalised-container">
   <div class="right-align flex flex-col items-end">
+   <%= render 'shared/btn-underline.html.erb', path: circle_movie_search_path(@circle), title: "Recommander un film", fontawesome: "fas fa-film" %>
    <%= render 'shared/btn-modal.html.erb',  path: '#', title: "Inviter un nouveau membre", fontawesome: "fas fa-user-friends" %>
-   <%= render 'shared/btn-underline.html.erb', path: '#', title: "Recommander un film", fontawesome: "fas fa-film" %>
   </div>
 
   <div class="circle-form hidden overlay" id="modal-form">

@@ -1,0 +1,11 @@
+<div class="flex">
+  <% if number != nil %>
+    <% n = number.truncate() %>
+    <% n.times do %>
+      <div><p><span  class="pink-font"><i class="fas fa-star"></i></span></p></div>
+    <% end %>
+    <% (5-n).times do %>
+      <div><p><span  class="pink-font"><i class="far fa-star"></i></span></p></div>
+    <% end %>
+  <% end %>
+</div>

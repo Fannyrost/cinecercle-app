@@ -6,7 +6,6 @@ class InvitationsController < ApplicationController
     @circle = Circle.find(params[:circle_id])
   end
 
-
   def create
     @circle = Circle.find(params[:circle_id])
     if params[:invitation].nil?

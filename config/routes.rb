@@ -11,13 +11,13 @@ Rails.application.routes.draw do
 
   resources :movies, only: [:show] do
     resources :watchlists, only: [:create, :destroy]
+    resources :recommendations, only: [:create]
   end
 
   resources :circles, only: [:index, :show, :new, :create] do
-    post'movies', to: 'movies#search', as: 'movie_search'
+    get 'movies', to: 'movies#search', as: 'movie_search'
     resources :invitations, only: [:new, :create]
-
-
+    resources :recommendations, only: [:show]
   end
 
 

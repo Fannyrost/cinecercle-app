@@ -7,11 +7,6 @@
       <% else %>
         <%=  render 'shared/btn-underline-cream', path: movie_watchlist_path(@movie), title: "Supprimer de ma watchlist", fontawesome: "fas fa-minus", method: :delete  %>
       <% end %>
-      <% if cookies[:circle_id].nil? %>
-        <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans un cercle", fontawesome: "fas fa-star"%>
-      <% else %>
-        <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans #{@circle.name }", fontawesome: "fas fa-star" %>
-      <% end %>
     </div>
   </div>
 </div>
@@ -29,33 +24,21 @@
     <p  class="my-2" >Acteurs : <%= @movie.actors %></p>
     <h2 class="mt-6 mb-2">Synopsis</h2>
     <p><%= @movie.plot %></p>
-  </div>
-</div>
-
-<div class="circle-form hidden overlay" id="modal-form">
-  <div class="modale">
-    <%= render 'shared/closing-modal' %>
-    <div class="form-inputs">
-      <%= simple_form_for [ @movie, @recommendation] do |f| %>
-        <%= f.input :rating,
-                    as: :radio_buttons, collection: ['1', '2', '3', '4', '5'],
-                    required: true,
-                    autofocus: true,
-                    input_html: { class: 'form-field' },
-                    item_wrapper_class: 'inline',
-                    label: "Note" %>
-        <%= f.input :review,
-                    required: true,
-                    autofocus: true,
-                    input_html: { class: 'form-field' },
-                    placeholder: "Avis",
-                    label:false %>
-        <div class="form-actions">
-          <%= f.button :submit, "Recommander", class: 'btn-pinky mt-8' %>
+    <div class="reco-card mt-6">
+      <div class=" flex justify-between items-start mb-3">
+        <div><p>Avatar</p></div>
+        <div class="w-8/12">
+          <h2>Recommandé par <%= @recommendation.membership.user.pseudo.capitalize %></h2>
+          <%= render 'shared/stars', number: @recommendation.rating %>
         </div>
-      <% end %>
+        <div><p><%= @recommendation.time_ago %></p></div>
+      </div>
+      <p>"<%= @recommendation.review %>"</p>
     </div>
   </div>
 </div>
+
+
+
 
 

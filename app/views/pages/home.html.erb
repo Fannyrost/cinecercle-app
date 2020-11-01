@@ -10,6 +10,21 @@
     <div><h1>Mes Cercles</h1></div>
     <%= render 'shared/btn-underline', path:  new_circle_path, title: "Créer un cercle", fontawesome: "fas fa-plus" %>
   </div>
+  <div class="scrolling-wrapper mt-4">
+    <% current_user.circles.each do |circle| %>
+      <%= link_to circle_path(circle) do  %>
+        <div class="circle b-shadow mr-3 flex flex-col justify-center items-center">
+          <div><h2><%= circle.name %></h2></div>
+          <div class="flex justify-around items-center">
+            <div class="mr-2"><p><i class="fas fa-users"></i> <%= circle.memberships.count %></p></div>
+            <div class="mr-2"><p><i class="fas fa-film"></i> <%= circle.recommendations.count %></p></div>
+            <div class="mr-2"><p><i class="fas fa-star"></i> <%= circle.recommendations.average(:rating) %></p></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <h1 class="mt-8">Activité</h1>
 
 
 
