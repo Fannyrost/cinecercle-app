@@ -1,0 +1,32 @@
+.answer-invitation {
+  background-color: $cream;
+  padding: 10px;
+
+  h3 {
+      font-size: 13px !important;
+      font-weight: 400 !important;
+    }
+
+  p {
+    font-size: 10px !important;
+  }
+
+  .items {
+    color: $cream;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+
+    i {
+      padding-top: 0.4rem;
+    }
+  }
+
+  .accept {
+    background-color: #B6D69D;
+  }
+
+  .decline {
+    background-color: #DB7D7D;
+  }
+}

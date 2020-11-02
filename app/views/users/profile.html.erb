@@ -1,6 +1,8 @@
 <%= render 'shared/navbar' %>
-<div class="right-align">
-  <%= render 'shared/btn-underline', path:  edit_user_registration_path(@user), title: "Modifier mon profil", fontawesome: "fas fa-user-edit" %>
+<div class="personnalised-container">
+  <div class="right-align">
+    <%= render 'shared/btn-underline', path:  edit_user_registration_path(@user), title: "Modifier mon profil", fontawesome: "fas fa-user-edit" %>
+  </div>
 </div>
 <div class="flex flex-col items-center justify-center my-8">
   <div><p>H</p></div>
@@ -20,10 +22,15 @@
   </div>
 </div>
 <div class="personnalised-container">
-  <div class="flex justify-start flex-wrap mt">
+  <div class="flex justify-start flex-wrap">
     <% @user.prefered_genres.each do |genre| %>
       <p class="font-cream genre-profile ml-1 mb-2"><%= genre %></p>
     <% end %>
   </div>
 
+
+  <h1 class="mt-8 mb-4">Invitations</h1>
+    <% @unsanwered_invitations.each do |invitation| %>
+      <%= render 'shared/answer-invitation', invitation: invitation %>
+    <% end %>
 </div>

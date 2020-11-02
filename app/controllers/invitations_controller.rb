@@ -16,6 +16,34 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def accept
+    @invitation           = Invitation.find(params[:id])
+    @invitation.accepted  = true
+    @invitation.answered  = true
+    @membership           = Membership.new(
+                            user_id: @invitation.recipient_id,
+                            circle_id: @invitation.circle_id,
+                            active: true)
+    @membership.save!
+    if @invitation.save!
+      redirect_to request.referer, notice: "Bienvenue dans #{@invitation.circle.name} ! 👋"
+    else
+      redirect_to request.referer, notice: "Oops, merci de recommencer 🙈"
+    end
+  end
+
+  def decline
+    @invitation = Invitation.find(params[:id])
+    @invitation.accepted = false
+    @invitation.answered = true
+    if @invitation.save!
+      redirect_to request.referer
+    else
+      redirect_to request.referer, notice: "Oops, merci de recommencer 🙈"
+    end
+  end
+
+
   def create_invite_from_user(user, circle)
     if user.nil?
       redirect_to circle_path(@circle), notice: "L'utilisateur n'existe pas, invitez le par mail 😉"
@@ -51,7 +79,4 @@ class InvitationsController < ApplicationController
   def invitation_params
     params.require(:invitation).permit(:email)
   end
-
-
-
 end
