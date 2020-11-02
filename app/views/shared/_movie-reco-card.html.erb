@@ -1,0 +1,16 @@
+<%= link_to circle_recommendation_path(circle, reco) do  %>
+  <div class="movie-reco-card flex justify-between b-shadow mb-10">
+    <%= image_tag movie.poster , alt: "alttext", class: 'flex-shrink' %>
+    <div class=" w-8/12">
+      <div class="flex justify-between">
+        <div class="movie-reco-content"><h3><%= movie.title %></h3></div>
+        <div><%= render 'shared/stars', number: reco.rating %></div>
+      </div>
+      <div class=" flex justify-start my-1">
+        <div><p>Avatar</p></div>
+        <div><p>Recommandé par <%= reco.membership.user.pseudo %></p></div>
+      </div>
+      <p class="movie-reco-content">"<%= reco.review %>"</p>
+    </div>
+  </div>
+<% end %>

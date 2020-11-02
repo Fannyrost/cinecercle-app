@@ -13,7 +13,7 @@
   <div class="scrolling-wrapper mt-4">
     <% current_user.circles.each do |circle| %>
       <%= link_to circle_path(circle) do  %>
-        <div class="circle b-shadow mr-3 flex flex-col justify-center items-center">
+        <div class="circle b-shadow mr-3 flex flex-col justify-center items-center text-center">
           <div><h2><%= circle.name %></h2></div>
           <div class="flex justify-center items-center items">
             <div class="mr-2"><p><i class="fas fa-users"></i> <%= circle.memberships.count %></p></div>

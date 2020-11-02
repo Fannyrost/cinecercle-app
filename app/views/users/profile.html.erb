@@ -1,0 +1,29 @@
+<%= render 'shared/navbar' %>
+<div class="right-align">
+  <%= render 'shared/btn-underline', path:  edit_user_registration_path(@user), title: "Modifier mon profil", fontawesome: "fas fa-user-edit" %>
+</div>
+<div class="flex flex-col items-center justify-center my-8">
+  <div><p>H</p></div>
+  <div class="flex justify-around items-start text-center">
+    <div class="mr-5">
+      <p>CERCLE</p>
+      <p><%= @user.circles.count %></p>
+    </div>
+    <div class="mr-5">
+      <p>RECOMMANDATIONS</p>
+      <p><%= @user.recommendations.count %></p>
+    </div>
+    <div>
+      <p>MOYENNE</p>
+      <p><%= @user.recommendations.average(:rating) %></p>
+    </div>
+  </div>
+</div>
+<div class="personnalised-container">
+  <div class="flex justify-start flex-wrap mt">
+    <% @user.prefered_genres.each do |genre| %>
+      <p class="font-cream genre-profile ml-1 mb-2"><%= genre %></p>
+    <% end %>
+  </div>
+
+</div>

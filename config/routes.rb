@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'users/profile'
   get 'circle/new'
   get 'circle/index'
   get 'circle/show'
@@ -21,6 +22,9 @@ Rails.application.routes.draw do
       resources :watchlists, only: [:create, :destroy]
     end
   end
+
+  resources :users, only: [:show]
+  get 'profile', to: 'users#profile', as: 'profile'
 
 
 
