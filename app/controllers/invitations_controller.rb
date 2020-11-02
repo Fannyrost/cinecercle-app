@@ -90,7 +90,7 @@ class InvitationsController < ApplicationController
       unless member.user == membership.user
         n = Notification.new
         n.sender_id = membership.user.id
-        n.recipient_id = member.id
+        n.recipient_id = member.user.id
         n.subject = "new-member-in-circle"
         n.object[:membership_id] = membership.id
         n.circle_id = circle.id

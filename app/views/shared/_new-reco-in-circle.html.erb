@@ -1,5 +1,5 @@
 <% reco = Recommendation.find(new.object["recommendation_id"]) %>
-<% circle = Circle.find(new.object["circle_id"]) %>
+<% circle = Circle.find(new.circle_id) %>
 <div class="flex justify-between items-start mb-2 notification">
   <div>
     <%= link_to user_path(reco.membership.user) do  %>

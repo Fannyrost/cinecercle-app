@@ -31,7 +31,6 @@
   </div>
 
   <% unless @unsanwered_invitations.empty?%>
-  <%= raise %>
     <h1 class="mt-8 mb-4">Invitations</h1>
       <% @unsanwered_invitations.each do |invitation| %>
         <%= render 'shared/answer-invitation', invitation: invitation %>

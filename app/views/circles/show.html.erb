@@ -27,7 +27,7 @@
   </div>
 
   <h1 class="mb-8 mt-2">Recommandations</h1>
-  <% @circle.recommendations.each do |reco| %>
+  <% @circle.recommendations.sort_by(&:created_at).reverse.each do |reco| %>
     <% movie = reco.movie %>
     <%= render 'shared/movie-reco-card', circle: @circle, movie: movie, reco: reco %>
   <% end %>

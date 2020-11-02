@@ -18,7 +18,6 @@ class RecommendationsController < ApplicationController
     @recommendation.membership = @membership
 
     if check_if_reco_exist?(@movie, @circle) && @recommendation.save!
-      raise
       notify_members_from_new_reco(@recommendation)
       redirect_to circle_recommendation_path(@circle, @recommendation)
     else
