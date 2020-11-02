@@ -1,0 +1,20 @@
+<% reco = Recommendation.find(new.object["recommendation_id"]) %>
+<% user = User.find(new.sender_id) %>
+<% circle = Circle.find(new.object["circle_id"]) %>
+<div class="flex justify-between items-start mb-2">
+  <div>
+    <%= link_to user_path(user) do  %>
+      <h1><%= user.pseudo[0].capitalize %></h1>
+    <% end %>
+  </div>
+  <div class="w-2/3 flex flex-col items-start">
+    <div><h3><%= circle.name %></h3></div>
+    <div><p><%= user.pseudo.capitalize %> a ajouté votre recommandation à sa watchlist</p></div>
+  </div>
+  <div class="time-ago">
+    <p><%= new.time_ago %></p>
+  </div>
+</div>
+<div class="mt-8 mb-2">
+  <%= render 'shared/movie-reco-card', circle: circle, movie: reco.movie, reco: reco %>
+</div>

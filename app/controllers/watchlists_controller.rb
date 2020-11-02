@@ -45,9 +45,20 @@ class WatchlistsController < ApplicationController
       @watchlist = Watchlist.new(movie_id: @movie.id)
       @watchlist.user = current_user
       @watchlist.save!
+      notify_recommander(recommendation, @watchlist)
       redirect_to circle_recommendation_path(circle, recommendation), notice: 'Ajouté à votre watchlist ! 👌'
     else
       redirect_to request.referer, notice: 'Déjà dans votre watchlist ! 🙄'
     end
+  end
+
+  def notify_recommander(recommendation, watchlist)
+    n = Notification.new
+    n.sender_id = watchlist.user.id
+    n.recipient_id = recommendation.membership.user.id
+    n.subject = "add-to-watchlist"
+    n.object[:recommendation_id] = recommendation.id
+    n.circle_id = recommendation.circle.id
+    n.save!
   end
 end

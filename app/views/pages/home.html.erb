@@ -26,7 +26,22 @@
       <% end %>
     <% end %>
   </div>
-  <h1 class="mt-8">Activité</h1>
+  <h1 class="mt-8 mb-4">Activité</h1>
+
+  <% @news.each do | new| %>
+    <% if new.subject == "new-member-in-circle" %>
+      <%= render 'shared/new-member-in-circle', new: new %>
+
+    <% elsif new.subject == "new-reco-in-circle"%>
+      <%= render 'shared/new-reco-in-circle', new: new %>
+
+    <% else %>
+      <%= render 'shared/add-to-watchlist', new: new %>
+    <% end %>
+
+  <% end %>
+
+
 
 
 

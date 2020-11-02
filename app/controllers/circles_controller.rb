@@ -11,6 +11,7 @@ class CirclesController < ApplicationController
     @circle = Circle.find(params[:id])
     @invitation = Invitation.new
     @users = User.pluck(:pseudo).sort
+    @news = new_of_circle
   end
 
   def create
@@ -26,7 +27,13 @@ class CirclesController < ApplicationController
     end
   end
 
+  private
+
   def circle_params
     params.require(:circle).permit(:name, :description)
+  end
+
+  def new_of_circle(circle)
+    Notification.where(circle_id: circle.id).sort_by(&:created_at).reverse!.last(3)
   end
 end

@@ -15,7 +15,7 @@
           <p> <i class="fas fa-film"></i><%= @circle.recommendations.count %> films</p>
         </div>
         <div>
-          <p><i class="fas fa-star"></i><%= @circle.recommendations.average(:rating) %> de moyenne</p>
+          <p><i class="fas fa-star"></i><%= @circle.recommendations.average(:rating).round(1) %> de moyenne</p>
         </div>
       </div>
 
@@ -24,10 +24,7 @@
           <p class="font-cream genre ml-1 mb-1"><%= genre %></p>
         <% end %>
       </div>
-
-
   </div>
-
 
   <h1 class="mb-8 mt-2">Recommandations</h1>
   <% @circle.recommendations.each do |reco| %>
