@@ -1,19 +1,15 @@
 class MoviesController < ApplicationController
    skip_before_action :verify_authenticity_token, only: [:search]
+
   def search
     query = params[:query]
-    capitalized_query = query.split.map(&:capitalize).join(' ')
-    @movie = Movie.find_by(title: capitalized_query)
-    if @movie.nil?
-      results = movies_scrapper(query)
-      if results.nil?
-        redirect_to request.referer, notice: "Aucun résultat 🙄"
-      else
-        @movies = results
-      end
+    if query.nil?
+      @circle = Circle.find(params[:circle_id])
+      search_display_from_circle(@circle)
     else
-      redirect_to movie_path(@movie)
+      search_display_from_query(query)
     end
+
   end
 
   def movie
@@ -24,6 +20,10 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    unless cookies[:circle_id].nil? || cookies[:circle_id] == ""
+      @circle = Circle.find(cookies[:circle_id])
+    end
+    @recommendation = Recommendation.new
   end
 
   private
@@ -42,4 +42,23 @@ class MoviesController < ApplicationController
     results = JSON.parse(response)["Search"]
   end
 
+  def search_display_from_query(query)
+    capitalized_query = query.split.map(&:capitalize).join(' ')
+    @movie = Movie.find_by(title: capitalized_query)
+    if @movie.nil?
+      results = movies_scrapper(query)
+      if results.nil?
+        redirect_to request.referer, notice: "Aucun résultat 🙄"
+      else
+        @movies = results
+      end
+    else
+      redirect_to movie_path(@movie)
+    end
+  end
+
+  def search_display_from_circle(circle)
+    @movies = nil
+    cookies[:circle_id] = circle.id
+  end
 end

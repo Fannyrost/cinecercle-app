@@ -6,7 +6,6 @@ class InvitationsController < ApplicationController
     @circle = Circle.find(params[:circle_id])
   end
 
-
   def create
     @circle = Circle.find(params[:circle_id])
     if params[:invitation].nil?
@@ -16,6 +15,34 @@ class InvitationsController < ApplicationController
       create_invite_from_email(@circle)
     end
   end
+
+  def accept
+    @invitation           = Invitation.find(params[:id])
+    @invitation.accepted  = true
+    @invitation.answered  = true
+    @membership           = Membership.new(
+                            user_id: @invitation.recipient_id,
+                            circle_id: @invitation.circle_id,
+                            active: true)
+    @membership.save!
+    if @invitation.save!
+      redirect_to request.referer, notice: "Bienvenue dans #{@invitation.circle.name} ! 👋"
+    else
+      redirect_to request.referer, notice: "Oops, merci de recommencer 🙈"
+    end
+  end
+
+  def decline
+    @invitation = Invitation.find(params[:id])
+    @invitation.accepted = false
+    @invitation.answered = true
+    if @invitation.save!
+      redirect_to request.referer
+    else
+      redirect_to request.referer, notice: "Oops, merci de recommencer 🙈"
+    end
+  end
+
 
   def create_invite_from_user(user, circle)
     if user.nil?
@@ -52,7 +79,4 @@ class InvitationsController < ApplicationController
   def invitation_params
     params.require(:invitation).permit(:email)
   end
-
-
-
 end

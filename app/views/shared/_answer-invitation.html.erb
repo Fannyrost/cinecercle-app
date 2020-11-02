@@ -1,0 +1,22 @@
+<div class=" flex justify-between items-start answer-invitation">
+  <div>
+    <%= link_to user_path(invitation.sender) do  %>
+      <p>H</p>
+    <% end %>
+  </div>
+  <div class="text-left w-7/12 pt-1">
+    <h3><%= invitation.sender.pseudo.capitalize %> vous invite à rejoindre <%= invitation.circle.name.capitalize %></h3>
+    <p class="mt-2">"<%= invitation.circle.description.capitalize %>"</p>
+  </div>
+  <div class="text-center pt-1">
+    <div class="time-ago"><p class="time-ago"><%= invitation.time_ago %></p></div>
+    <div class="flex justify-around items-center mt-2">
+      <%= link_to accept_invitation_path(invitation), method: :patch do  %>
+        <div class="items accept"><i class="fas fa-check"></i></div>
+      <% end %>
+      <%= link_to decline_invitation_path(invitation), method: :patch do  %>
+        <div class="items decline"><i class="fas fa-times"></i></div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,11 @@
       <% else %>
         <%=  render 'shared/btn-underline-cream', path: movie_watchlist_path(@movie), title: "Supprimer de ma watchlist", fontawesome: "fas fa-minus", method: :delete  %>
       <% end %>
-      <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans un cercle", fontawesome: "fas fa-star"%>
+      <% if cookies[:circle_id].nil? || cookies[:circle_id] == "" %>
+        <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans un cercle", fontawesome: "fas fa-star"%>
+      <% else %>
+        <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans #{@circle.name }", fontawesome: "fas fa-star" %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -31,7 +35,26 @@
 <div class="circle-form hidden overlay" id="modal-form">
   <div class="modale">
     <%= render 'shared/closing-modal' %>
-    <p>coucou from modal</p>
+    <div class="form-inputs">
+      <%= simple_form_for [ @movie, @recommendation] do |f| %>
+        <%= f.input :rating,
+                    as: :radio_buttons, collection: ['1', '2', '3', '4', '5'],
+                    required: true,
+                    autofocus: true,
+                    input_html: { class: 'form-field' },
+                    item_wrapper_class: 'inline',
+                    label: "Note" %>
+        <%= f.input :review,
+                    required: true,
+                    autofocus: true,
+                    input_html: { class: 'form-field' },
+                    placeholder: "Avis",
+                    label:false %>
+        <div class="form-actions">
+          <%= f.button :submit, "Recommander", class: 'btn-pinky mt-8' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

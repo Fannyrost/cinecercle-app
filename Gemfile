@@ -37,6 +37,8 @@ gem 'json'
 gem 'open-uri'
 gem 'rest-client'
 
+gem 'time_difference'
+
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'

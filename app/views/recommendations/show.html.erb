@@ -1,0 +1,44 @@
+<%= render 'shared/navbar-transparent' %>
+<div class="movie-show" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%), url(<%= @movie.poster %>);" >
+  <div class="right-align pt-16">
+    <div class="flex flex-col items-end personnalised-container">
+      <% if @movie.watchlisted?(current_user) %>
+        <%=  render 'shared/btn-underline-cream', path: circle_recommendation_watchlists_path(@circle, @recommendation), title: "Ajouter à ma watchlist", fontawesome: "fas fa-plus", method: :post  %>
+      <% else %>
+        <%=  render 'shared/btn-underline-cream', path: circle_recommendation_watchlist_path(@circle, @recommendation), title: "Supprimer de ma watchlist", fontawesome: "fas fa-minus", method: :delete  %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="movie-content">
+  <div class="personnalised-container pt-4 pb-8">
+    <div class="flex justify-between movie-info mb-6">
+      <div class="leading-none flex-shrink"><h1><%= @movie.title %> <span class="movie-year">(<%= @movie.year %>)</span></h1></div>
+      <div class="w-40 flex justify-end flex-wrap">
+        <% @movie.split_genre.each do |genre| %>
+          <p class="genre ml-1"><%= genre %></p>
+        <% end %>
+      </div>
+    </div>
+    <p>Réalisateur : <%= @movie.director %></p>
+    <p  class="my-2" >Acteurs : <%= @movie.actors %></p>
+    <h2 class="mt-6 mb-2">Synopsis</h2>
+    <p><%= @movie.plot %></p>
+    <div class="reco-card mt-6">
+      <div class=" flex justify-between items-start mb-3">
+        <div><p>Avatar</p></div>
+        <div class="w-8/12 mx-2">
+          <h3>Recommandé par <%= @recommendation.membership.user.pseudo.capitalize %></h3>
+          <%= render 'shared/stars', number: @recommendation.rating %>
+        </div>
+        <div class="time-ago"><p><%= @recommendation.time_ago %></p></div>
+      </div>
+      <p>"<%= @recommendation.review %>"</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
