@@ -3,7 +3,9 @@ class MoviesController < ApplicationController
 
   def search
     query = params[:query]
-    if query.nil?
+    if query.nil? && params[:circle_id].nil?
+      @movie = nil
+    elsif query.nil?
       @circle = Circle.find(params[:circle_id])
       search_display_from_circle(@circle)
     else
