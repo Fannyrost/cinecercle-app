@@ -3,7 +3,7 @@ class InvitationsController < ApplicationController
 
   def new
     @invitation = Invitation.new
-    @circle = Circle.find(params[:circle_id])
+    @circle     = Circle.find(params[:circle_id])
   end
 
   def create
@@ -34,7 +34,7 @@ class InvitationsController < ApplicationController
   end
 
   def decline
-    @invitation = Invitation.find(params[:id])
+    @invitation          = Invitation.find(params[:id])
     @invitation.accepted = false
     @invitation.answered = true
     if @invitation.save!
@@ -51,7 +51,7 @@ class InvitationsController < ApplicationController
     elsif user.circles.include?(circle)
       redirect_to circle_path(@circle), notice: "#{user.name.capitalize} est déjà membre du cercle 😉"
     else
-      @invitation = Invitation.new(recipient_id: user.id )
+      @invitation           = Invitation.new(recipient_id: user.id )
       @invitation.circle_id = @circle.id
       @invitation.sender_id = current_user.id
       @invitation.generate_token
@@ -65,7 +65,7 @@ class InvitationsController < ApplicationController
 
 
   def create_invite_from_email(circle)
-    @invitation = Invitation.new(invitation_params)
+    @invitation           = Invitation.new(invitation_params)
     @invitation.circle_id = @circle.id
     @invitation.sender_id = current_user.id
     @invitation.generate_token
@@ -88,12 +88,12 @@ class InvitationsController < ApplicationController
     circle = membership.circle
     circle.memberships.each do |member|
       unless member.user == membership.user
-        n = Notification.new
-        n.sender_id = membership.user.id
-        n.recipient_id = member.user.id
-        n.subject = "new-member-in-circle"
+        n                        = Notification.new
+        n.sender_id              = membership.user.id
+        n.recipient_id           = member.user.id
+        n.subject                = "new-member-in-circle"
         n.object[:membership_id] = membership.id
-        n.circle_id = circle.id
+        n.circle_id              = circle.id
         n.save!
       end
     end
@@ -101,12 +101,12 @@ class InvitationsController < ApplicationController
 
   def notify_sender_from_acceptation(invitation)
     circle = invitation.circle
-    n = Notification.new
-    n.sender_id = invitation.recipient_id
-    n.recipient_id = invitation.sender_id
-    n.subject = "accepted-invitation"
-    n.object[:user_id] =invitation.recipient_id
-    n.circle_id = circle.id
+    n                  = Notification.new
+    n.sender_id        = invitation.recipient_id
+    n.recipient_id     = invitation.sender_id
+    n.subject          = "accepted-invitation"
+    n.object[:user_id] = invitation.recipient_id
+    n.circle_id        = circle.id
     n.save!
   end
 end

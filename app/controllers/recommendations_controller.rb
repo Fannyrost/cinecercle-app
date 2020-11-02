@@ -45,12 +45,12 @@ class RecommendationsController < ApplicationController
     circle = recommendation.circle
     circle.memberships.each do |member|
       unless member.user == current_user
-        n = Notification.new
-        n.sender_id = current_user.id
-        n.recipient_id = member.user.id
-        n.subject = "new-reco-in-circle"
+        n                            = Notification.new
+        n.sender_id                  = current_user.id
+        n.recipient_id               = member.user.id
+        n.subject                    = "new-reco-in-circle"
         n.object[:recommendation_id] = recommendation.id
-        n.circle_id = circle.id
+        n.circle_id                  = circle.id
         n.save
       end
     end
