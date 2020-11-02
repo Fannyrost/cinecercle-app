@@ -15,7 +15,9 @@
           <p> <i class="fas fa-film"></i><%= @circle.recommendations.count %> films</p>
         </div>
         <div>
-          <p><i class="fas fa-star"></i><%= @circle.recommendations.average(:rating).round(1) %> de moyenne</p>
+          <% unless @circle.recommendations.count == 0 %>
+            <p><i class="fas fa-star"></i><%= @circle.recommendations.average(:rating).round(1) %> de moyenne</p>
+          <% end %>
         </div>
       </div>
 
