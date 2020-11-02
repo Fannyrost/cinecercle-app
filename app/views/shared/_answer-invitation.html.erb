@@ -1,6 +1,8 @@
 <div class=" flex justify-between items-start answer-invitation">
   <div>
-    <p>H</p>
+    <%= link_to user_path(invitation.sender) do  %>
+      <p>H</p>
+    <% end %>
   </div>
   <div class="text-left w-7/12 pt-1">
     <h3><%= invitation.sender.pseudo.capitalize %> vous invite à rejoindre <%= invitation.circle.name.capitalize %></h3>
