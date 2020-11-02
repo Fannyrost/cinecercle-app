@@ -17,7 +17,7 @@
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
-        <div class="file">
+       <!--  <div class="file">
           <%= f.input :photo,
                       as: :file,
                       input_html: { class: 'form-field b-shadow' },
@@ -26,7 +26,7 @@
           <h3 class="form-field b-shadow text-left">
             Photo de profil
           </h3>
-        </div>
+        </div> -->
         <%= f.input :pseudo,
                     required: true,
                     autofocus: true,

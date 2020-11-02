@@ -1,6 +1,6 @@
 <% reco = Recommendation.find(new.object["recommendation_id"]) %>
 <% circle = Circle.find(new.object["circle_id"]) %>
-<div class="flex justify-between items-start mb-2">
+<div class="flex justify-between items-start mb-2 notification">
   <div>
     <%= link_to user_path(reco.membership.user) do  %>
       <h1><%= reco.membership.user.pseudo[0].capitalize %></h1>
@@ -15,5 +15,5 @@
   </div>
 </div>
 <div class="mt-8 mb-2">
-  <%= render 'shared/movie-reco-card', circle: circle, movie: reco.movie, reco: reco %>
+  <%= render 'shared/new-reco-movie-card', circle: circle, movie: reco.movie, reco: reco %>
 </div>
