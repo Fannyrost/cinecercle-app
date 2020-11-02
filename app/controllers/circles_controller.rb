@@ -11,7 +11,7 @@ class CirclesController < ApplicationController
     @circle = Circle.find(params[:id])
     @invitation = Invitation.new
     @users = User.pluck(:pseudo).sort
-    @news = new_of_circle
+    @news = new_of_circle(@circle)
   end
 
   def create

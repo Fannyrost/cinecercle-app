@@ -36,7 +36,22 @@
   <div class="modale">
     <%= render 'shared/closing-modal' %>
     <div class="form-inputs">
+
       <%= simple_form_for [ @movie, @recommendation] do |f| %>
+        <% if cookies[:circle_id].nil? || cookies[:circle_id] == "" %>
+          <%= f.association :circle,
+                      as: :collection_select,
+                      collection: Circle.joins(:memberships).where(memberships: {user_id: current_user.id}),
+                      label_method: :name,
+                      value_method: :id,
+                      required: true,
+                      autofocus: true,
+                      input_html: { class: 'form-field' },
+                      item_wrapper_class: 'inline',
+                      placeholder: "Choisissez le cercle",
+                      label: false %>
+
+        <% end %>
         <%= f.input :rating,
                     as: :radio_buttons, collection: ['1', '2', '3', '4', '5'],
                     required: true,

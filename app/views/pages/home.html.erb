@@ -20,7 +20,11 @@
           <div class="flex justify-center items-center items">
             <div class="mr-2"><p><i class="fas fa-users"></i> <%= circle.memberships.count %></p></div>
             <div class="mr-2"><p><i class="fas fa-film"></i> <%= circle.recommendations.count %></p></div>
-            <div class="mr-2"><p><i class="fas fa-star"></i> <%= circle.recommendations.average(:rating) %></p></div>
+
+            <% unless circle.recommendations.count == 0 %>
+              <div class="mr-2"><p><i class="fas fa-star"></i> <%= circle.recommendations.average(:rating).round(1) %></p></div>
+            <% end %>
+
           </div>
         </div>
       <% end %>

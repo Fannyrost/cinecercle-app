@@ -4,9 +4,9 @@ class PagesController < ApplicationController
   def home
     unless user_signed_in?
       redirect_to new_user_session_path
+    else
+      @news = news
     end
-
-    @news = news
   end
 
   def news

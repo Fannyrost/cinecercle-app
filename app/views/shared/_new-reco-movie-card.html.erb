@@ -1,0 +1,14 @@
+<%= link_to circle_recommendation_path(circle, reco) do  %>
+  <div class="movie-reco-card  new-reco ml-8 flex justify-between b-shadow mb-10">
+    <%= image_tag movie.poster , alt: "alttext", class: 'flex-shrink' %>
+    <div class=" w-8/12 flex flex-col items-start ml-4">
+      <div class="movie-reco-content">
+        <h3><%= movie.title %></h3>
+      </div>
+        <%= render 'shared/stars', number: reco.rating %>
+      <div class="mt-3">
+        <p class="movie-reco-content">"<%= reco.review %>"</p>
+      </div>
+    </div>
+  </div>
+<% end %>
