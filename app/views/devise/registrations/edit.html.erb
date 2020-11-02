@@ -1,35 +1,60 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render 'shared/navbar' %>
+<div class="personnalised-container mt-12">
+  <h1 class="mb-12">Editer mon profil</h1>
+  <p>Laisser le champ vide si vous souhaitez conserver la même information</p>
+  <div class="text-center">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    label:false,
+                    input_html: { class: 'form-field b-shadow' },
+                    placeholder: "Email" %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+        <div class="file">
+          <%= f.input :photo,
+                      as: :file,
+                      input_html: { class: 'form-field b-shadow' },
+                      label: false,
+                      label_html: { class: 'cream-font' } %>
+          <h3 class="form-field b-shadow text-left">
+            Photo de profil
+          </h3>
+        </div>
+        <%= f.input :pseudo,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "Pseudo",
+                    input_html: { class: 'form-field b-shadow' },
+                    label:false %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "new-password", class: 'form-field b-shadow' },
+                    label: false,
+                    placeholder: "Nouveau mot de passe" %>
+        <%= f.input :password_confirmation,
+                    required: false,
+                    label: false,
+                    placeholder: "Confirmez le nouveau mot de passe",
+                    input_html: { autocomplete: "new-password", class: 'form-field b-shadow' }  %>
+        <%= f.input :current_password,
+                    label: false,
+                    placeholder: "Mot de passe actuel",
+                    required: true,
+                    input_html: { autocomplete: "current-password", class: 'form-field b-shadow' } %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Validez", class: 'btn-pinky mt-12' %>
+      </div>
     <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+  <div class="discrete-link" id="sign-up-btn">
+    <%= render 'shared/discrete-link-with-alert', text: 'Insatisfait ?  ', title: "Supprimez votre compte", path: registration_path(resource_name), method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

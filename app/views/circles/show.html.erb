@@ -4,6 +4,28 @@
    <%= render 'shared/btn-underline.html.erb', path: circle_movie_search_path(@circle), title: "Recommander un film", fontawesome: "fas fa-film" %>
    <%= render 'shared/btn-modal.html.erb',  path: '#', title: "Inviter un nouveau membre", fontawesome: "fas fa-user-friends" %>
   </div>
+
+  <div class="my-8 flex flex-col justify-between items-center mx-4 my-8">
+    <div class="circle-name">
+      <h2 class="mb-4"><i class="fas fa-circle pink-font"></i> <%= @circle.name.capitalize %></h2 class="mb-4">
+    </div>
+
+      <div class="flex justify-around items-start text-center mb-2">
+        <div class="mr-5">
+          <p> <i class="fas fa-film"></i><%= @circle.recommendations.count %> films</p>
+        </div>
+        <div>
+          <p><i class="fas fa-star"></i><%= @circle.recommendations.average(:rating).round(1) %> de moyenne</p>
+        </div>
+      </div>
+
+      <div class="flex justify-start flex-wrap mt-2">
+        <% @circle.prefered_genres.each do |genre| %>
+          <p class="font-cream genre ml-1 mb-1"><%= genre %></p>
+        <% end %>
+      </div>
+  </div>
+
   <h1 class="mb-8 mt-2">Recommandations</h1>
   <% @circle.recommendations.each do |reco| %>
     <% movie = reco.movie %>
@@ -20,7 +42,6 @@
         <button type= "submit" class="b-shadow"><i class="fas fa-search"></i></button>
       </form>
     </div>
-
-    <%= link_to "Inviter un nouveau membre par mail", new_circle_invitation_path(@circle) %>
+    <%#= link_to "Inviter un nouveau membre par mail", new_circle_invitation_path(@circle) %>
   </div>
 </div>

@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :movies, through: :watchlists
   has_many :invitations, class_name: "Invitation", foreign_key: 'recipient_id'
   has_many :sent_invites, class_name:  "Invitation", foreign_key: 'sender_id'
+  has_many :notifications, class_name: "Notification", foreign_key: 'recipient_id'
+  has_many :notifications, class_name: "Notification", foreign_key: 'sender_id'
 
 
   def self.from_omniauth(auth)

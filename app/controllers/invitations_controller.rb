@@ -25,6 +25,7 @@ class InvitationsController < ApplicationController
                             circle_id: @invitation.circle_id,
                             active: true)
     @membership.save!
+    notify_members_from_new_member(@membership)
     if @invitation.save!
       redirect_to request.referer, notice: "Bienvenue dans #{@invitation.circle.name} ! 👋"
     else
@@ -47,6 +48,8 @@ class InvitationsController < ApplicationController
   def create_invite_from_user(user, circle)
     if user.nil?
       redirect_to circle_path(@circle), notice: "L'utilisateur n'existe pas, invitez le par mail 😉"
+    elsif user.circles.include?(circle)
+      redirect_to circle_path(@circle), notice: "#{user.name.capitalize} est déjà membre du cercle 😉"
     else
       @invitation = Invitation.new(recipient_id: user.id )
       @invitation.circle_id = @circle.id
@@ -74,9 +77,36 @@ class InvitationsController < ApplicationController
     end
   end
 
+
   private
 
   def invitation_params
     params.require(:invitation).permit(:email)
+  end
+
+  def notify_members_from_new_member(membership)
+    circle = membership.circle
+    circle.memberships.each do |member|
+      unless member.user == membership.user
+        n = Notification.new
+        n.sender_id = membership.user.id
+        n.recipient_id = member.id
+        n.subject = "new-member-in-circle"
+        n.object[:membership_id] = membership.id
+        n.circle_id = circle.id
+        n.save!
+      end
+    end
+  end
+
+  def notify_sender_from_acceptation(invitation)
+    circle = invitation.circle
+    n = Notification.new
+    n.sender_id = invitation.recipient_id
+    n.recipient_id = invitation.sender_id
+    n.subject = "accepted-invitation"
+    n.object[:user_id] =invitation.recipient_id
+    n.circle_id = circle.id
+    n.save!
   end
 end

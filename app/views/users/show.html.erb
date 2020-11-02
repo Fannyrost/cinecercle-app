@@ -1,9 +1,9 @@
 <%= render 'shared/navbar' %>
 <div class="flex flex-col items-center justify-center my-8">
-  <div><p>H</p></div>
+  <div><h1><%= @user.pseudo[0].capitalize %></h1></div>
   <div class="flex justify-around items-start text-center">
     <div class="mr-5">
-      <p>CERCLE</p>
+      <p>CERCLES</p>
       <p><%= @user.circles.count %></p>
     </div>
     <div class="mr-5">
@@ -11,9 +11,10 @@
       <p><%= @user.recommendations.count %></p>
     </div>
     <div>
-      <p>MOYENNE</p>
-      <p><%= @user.recommendations.average(:rating) %></p>
-    </div>
+      <% unless @user.recommendations.count == 0 %>
+        <p>MOYENNE</p>
+        <p><% @user.recommendations.average(:rating).round(1) %></p>
+      <% end %>
   </div>
 </div>
 <div class="personnalised-container">
