@@ -1,0 +1,70 @@
+.pc-tab > input,
+.pc-tab section > div {
+  display: none;
+}
+
+#tab1:checked ~ section .tab1,
+#tab2:checked ~ section .tab2,
+#tab3:checked ~ section .tab3 {
+  display: block;
+}
+
+#tab1:checked ~ nav .tab1,
+#tab2:checked ~ nav .tab2,
+#tab3:checked ~ nav .tab3 {
+  color: red;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.pc-tab {
+  width: 100%;
+
+  ul {
+    list-style: none;
+
+    li {
+      label {
+        float: left;
+        padding: 10px;
+        &:hover {
+          border-bottom: 1px solid $pinky;
+        }
+        &:active {
+          border-bottom: 1px solid $pinky;
+        }
+      }
+    }
+  }
+  section {
+    clear: both;
+    div {
+      width: 100%;
+    }
+  }
+}
+
+#tab1:checked ~ nav .tab1,
+#tab2:checked ~ nav .tab2,
+#tab3:checked ~ nav .tab3 {
+  label {
+    color: $dark-gray;
+    position: relative;
+    border-bottom: 1px solid $pinky;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      background: $pinky;
+      left: 0;
+      bottom: -1px;
+    }
+  }
+}
+

@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    unless cookies[:circle_id].nil?
+    unless cookies[:circle_id].nil? || cookies[:circle_id] == ""
       @circle = Circle.find(cookies[:circle_id])
     end
     @recommendation = Recommendation.new

@@ -28,9 +28,56 @@
     <% end %>
   </div>
 
-
   <h1 class="mt-8 mb-4">Invitations</h1>
     <% @unsanwered_invitations.each do |invitation| %>
       <%= render 'shared/answer-invitation', invitation: invitation %>
     <% end %>
+
+    <div class="pc-tab mt-8">
+    <input checked="checked" id="tab1" type="radio" name="pct" />
+    <input id="tab2" type="radio" name="pct" />
+    <input id="tab3" type="radio" name="pct" />
+      <nav>
+        <ul>
+          <li class="tab1">
+            <label for="tab1">Watchlist</label>
+          </li>
+          <li class="tab2">
+            <label for="tab2">Recommandations</label>
+          </li>
+          <li class="tab3">
+            <label for="tab3">Films vus</label>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <div class="tab1">
+          <div class="flex justify-between items-start flex-wrap pt-4">
+            <% @watchlists.each do |movie| %>
+              <% poster = movie.poster %>
+                <a href="#">
+                  <div class="mb-4 text-center movie-card" data-imdb="<%= movie.imdbid %>">
+                    <% unless poster =="N/A" %>
+                      <img src="<%= poster %> " class="movie-poster b-shadow">
+                    <% else %>
+                      <img src="<%= image_path("poster.png") %> " class="movie-poster b-shadow">
+                    <% end %>
+                    <p><%= movie.title %></p>
+                  </div>
+                </a>
+            <% end %>
+          </div>
+
+        </div>
+        <div class="tab2 pt-10">
+          <% @user.recommendations.each do |reco| %>
+                <%= render 'shared/movie-reco-card', circle: reco.circle, movie: reco.movie, reco: reco %>
+          <% end %>
+        </div>
+        <div class="tab3">
+          <h2>Third</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, nobis culpa rem, vitae earum aliquid.</p>
+        </div>
+      </section>
+    </div>
 </div>

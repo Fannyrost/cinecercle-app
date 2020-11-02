@@ -7,7 +7,7 @@
       <% else %>
         <%=  render 'shared/btn-underline-cream', path: movie_watchlist_path(@movie), title: "Supprimer de ma watchlist", fontawesome: "fas fa-minus", method: :delete  %>
       <% end %>
-      <% if cookies[:circle_id].nil? %>
+      <% if cookies[:circle_id].nil? || cookies[:circle_id] == "" %>
         <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans un cercle", fontawesome: "fas fa-star"%>
       <% else %>
         <%=  render 'shared/btn-modal-cream', path: '#', title: "Recommander dans #{@circle.name }", fontawesome: "fas fa-star" %>
