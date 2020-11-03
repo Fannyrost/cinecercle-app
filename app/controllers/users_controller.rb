@@ -9,4 +9,6 @@ class UsersController < ApplicationController
     @unsanwered_invitations = Invitation.where(recipient_id: @user.id, answered: false)
     @watchlists             = @user.movies
   end
+
+
 end

@@ -1,10 +1,12 @@
 <%= render 'shared/navbar' %>
 <div class="personnalised-container">
-  <form action="/movies" method='post' class="flex items-center search mb-10" >
+  <form action="/movies" method='post' class="flex items-center search " >
     <input type="text" name="query" placeholder="Rechercher un film" class="form-field b-shadow">
     <button type= "submit" class="b-shadow"><i class="fas fa-search"></i></button>
   </form>
-
+  <div class="search-hint mb-10">
+    <p>🇬🇧 Titre original uniquement</p>
+  </div>
 
   <div class="flex justify-between items-start flex-wrap">
     <% unless @movies.nil? %>

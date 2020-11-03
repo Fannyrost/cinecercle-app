@@ -5,48 +5,49 @@
     <input type="text" name="query" placeholder="Rechercher un film" class="form-field b-shadow">
     <button type= "submit" class="b-shadow"><i class="fas fa-search"></i></button>
   </form>
+  <div class="search-hint">
+    <p>🇬🇧 Titre original uniquement</p>
+  </div>
 
   <div class="flex justify-between items-start mt-8">
     <div><h1>Mes Cercles</h1></div>
     <%= render 'shared/btn-underline', path:  new_circle_path, title: "Créer un cercle", fontawesome: "fas fa-plus" %>
   </div>
-  <div class="scrolling-wrapper mt-4">
-    <% current_user.circles.each do |circle| %>
-      <%= link_to circle_path(circle) do  %>
-        <div class="circle b-shadow mr-3 flex flex-col justify-center items-center text-center">
-          <div class="flex flex-col justify-center">
-            <h2><%= circle.name %></h2>
+  <% if @circles.empty? %>
+    <p class="mt-4">Vous n'êtes pes encore membre d'un cercle</p>
+    <p>Créez le vôtre et invitez vos proches ! Vous pourrez ainsi vous recommander vos films coup de 💖</p>
+  <% else %>
+    <div class="scrolling-wrapper mt-4">
+      <% @circles.each do |circle| %>
+        <%= link_to circle_path(circle) do  %>
+          <div class="circle b-shadow mr-3 flex flex-col justify-center items-center text-center">
+            <div class="flex flex-col justify-center">
+              <h2><%= circle.name %></h2>
+            </div>
+            <div class="flex justify-center items-center items">
+              <div class="mr-2"><p><i class="fas fa-users"></i> <%= circle.memberships.count %></p></div>
+              <div class="mr-2"><p><i class="fas fa-film"></i> <%= circle.recommendations.count %></p></div>
+              <% unless circle.recommendations.count == 0 %>
+                <div class="mr-2"><p><i class="fas fa-star"></i> <%= circle.recommendations.average(:rating).round(1) %></p></div>
+              <% end %>
+            </div>
           </div>
-          <div class="flex justify-center items-center items">
-            <div class="mr-2"><p><i class="fas fa-users"></i> <%= circle.memberships.count %></p></div>
-            <div class="mr-2"><p><i class="fas fa-film"></i> <%= circle.recommendations.count %></p></div>
-
-            <% unless circle.recommendations.count == 0 %>
-              <div class="mr-2"><p><i class="fas fa-star"></i> <%= circle.recommendations.average(:rating).round(1) %></p></div>
-            <% end %>
-
-          </div>
-        </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <h1 class="mt-8 mb-4">Activité</h1>
+  <% if @news.empty? %>
+    <p>Rien de neuf ici 🤫 (pour le moment)</p>
+  <% else %>
+    <% @news.each do | new| %>
+      <% if new.subject == "new-member-in-circle" %>
+        <%= render 'shared/new-member-in-circle', new: new %>
+      <% elsif new.subject == "new-reco-in-circle"%>
+        <%= render 'shared/new-reco-in-circle', new: new %>
+      <% else %>
+        <%= render 'shared/add-to-watchlist', new: new %>
       <% end %>
     <% end %>
-  </div>
-  <h1 class="mt-8 mb-4">Activité</h1>
-
-  <% @news.each do | new| %>
-    <% if new.subject == "new-member-in-circle" %>
-      <%= render 'shared/new-member-in-circle', new: new %>
-
-    <% elsif new.subject == "new-reco-in-circle"%>
-      <%= render 'shared/new-reco-in-circle', new: new %>
-
-    <% else %>
-      <%= render 'shared/add-to-watchlist', new: new %>
-    <% end %>
-
   <% end %>
-
-
-
-
-
 </div>
