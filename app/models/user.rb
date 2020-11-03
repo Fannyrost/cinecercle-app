@@ -42,7 +42,9 @@ class User < ApplicationRecord
     five_prefered_genres(prefered_genres)
   end
 
-
+  def notify_from_invitation?
+    Invitation.where(recipient_id: self.id, answered: false).exists?
+  end
 
   private
 

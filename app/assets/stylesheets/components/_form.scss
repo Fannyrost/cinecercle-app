@@ -34,8 +34,15 @@
     right: 2rem;
   }
 
+
 }
 
+.search-hint {
+  p {
+    font-style: italic;
+    font-size: 10px;
+  }
+}
 .file {
 
   input {

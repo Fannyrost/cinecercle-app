@@ -3,6 +3,11 @@
     <a href="<%= profile_path %>" class="logo">
       <h1><%= current_user.pseudo[0].capitalize %></h1>
     </a>
+    <% if current_user.notify_from_invitation? %>
+      <div class="notification-pop">
+        <i class="fas fa-circle"></i>
+      </div>
+    <% end %>
   </div>
   <div>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
