@@ -10,6 +10,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def cgu
+
+  end
+
   def news
     Notification.where(recipient_id: current_user.id).sort_by(&:created_at).reverse!.last(20)
   end

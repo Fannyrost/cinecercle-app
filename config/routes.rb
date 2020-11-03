@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   # patch 'invitation/accept', to: 'invitations#accept', as: 'accept_invitation'
   # patch 'invitation/decline', to: 'invitations#decline', as: 'decline_invitation'
-
+  get 'cgu', to: 'pages#cgu'
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
