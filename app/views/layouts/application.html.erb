@@ -5,13 +5,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
+    <link rel="apple-touch-icon" sizes="72x72" href="/fav_icons/icon-72.png">
+    <link rel="apple-touch-startup-image" href="icons/launch.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Cinecercle">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
+  <body ontouchstart=””>
     <%= render 'shared/flashes' %>
     <%= yield %>
   </body>
